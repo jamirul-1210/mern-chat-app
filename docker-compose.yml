@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  api:
+    image: chat-app-api:latest
+    build:
+      context: /backend
+      dockerfile: Dockerfile
+    expose:
+    - "3000"
+    container_name: express-app
+    env_file: 
+      - .env
+    volumes:
+      - assets:/app/public/assets # Persistent volume for assets
+    depends_on:
+      - mongo
+
+  client:
+    image: chat-app-client:latest
+    build:
+      context: /frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: always
+    
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db:latest
+    env_file: 
+    - .env
+    expose:
+    - "27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+  assets:
