@@ -55,14 +55,14 @@ app.use("/assets", express.static(UPLOAD_DIRECTORY,{
 
 
 // test route to check if the server is running
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(StatusCodes.OK).json({ message: 'Backend is Running!' });
 });
 
 
 
 // API routes
-app.use("/api", router);
+app.use("/", router);
 
 // 404 route
 app.use((_req: Request, res: Response, next: NextFunction) => {
