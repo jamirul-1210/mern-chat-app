@@ -5,7 +5,7 @@ FROM node:20 as builder
 WORKDIR /app
 
 # Copy only package.json and pnpm-lock.yaml for efficient caching
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
 
 # Install pnpm globally
 RUN npm install -g pnpm
@@ -29,7 +29,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 # Copy only package.json and pnpm-lock.yaml for production installation
-COPY package.json pnpm-lock.yaml ./
+COPY package.json ./
 
 # Install only production dependencies
 RUN pnpm install --prod --frozen-lockfile

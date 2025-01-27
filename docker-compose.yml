@@ -3,7 +3,7 @@ services:
   api:
     image: chat-app-api:latest
     build:
-      context: /backend
+      context: ./backend
       dockerfile: Dockerfile
     expose:
     - "3000"
@@ -18,7 +18,7 @@ services:
   client:
     image: chat-app-client:latest
     build:
-      context: /frontend
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "80:80"
