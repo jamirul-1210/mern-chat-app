@@ -1,0 +1,5 @@
+docker stop $(docker ps -aq) -->> stop all container
+
+docker rm $(docker ps -aq) -->> remove all docker containers
+
+docker-compose up --build -d -->> build and run all service in a docker compose file
